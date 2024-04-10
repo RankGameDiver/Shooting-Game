@@ -25,16 +25,34 @@ public class BulletObjectPool : MonoBehaviour
     }
 
     [SerializeField] private GameObject _bulletObj;
-    private List<Bullet> _bullets = new List<Bullet>();
+    private List<Bullet> _enableBullets = new List<Bullet>();
+    private Queue<Bullet> _disableBullets = new Queue<Bullet>();
 
     public void Spawn(Bullet.Settings bulletSettings, Vector3 startPos)
     {
         // Debug.Log("Spawn Bullet");
-        var bulletObj = Instantiate(_bulletObj, startPos, Quaternion.identity, gameObject.transform);
-        bulletObj.name = "bullet";
+        Bullet bullet;
+        if(_disableBullets.Count > 0)
+        {
+            bullet = _disableBullets.Dequeue();
+            bullet.transform.position = startPos;
+        }
+        else
+        {
+            var bulletObj = Instantiate(_bulletObj, startPos, Quaternion.identity, gameObject.transform);
+            bulletObj.name = "bullet";
+            bullet = bulletObj.GetComponent<Bullet>();
+        }
 
-        Bullet bullet = bulletObj.GetComponent<Bullet>();
         bullet.Init(bulletSettings);
-        _bullets.Add(bullet);
+        bullet.gameObject.SetActive(true);
+
+        _enableBullets.Add(bullet);
+    }
+
+    public void Dispawn(Bullet bullet)
+    {
+        _enableBullets.Remove(bullet);
+        _disableBullets.Enqueue(bullet);
     }
 }

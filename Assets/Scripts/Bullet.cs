@@ -27,4 +27,18 @@ public class Bullet : MonoBehaviour
     {
         gameObject.transform.position += _settings.MoveSpeed * _settings.Direction;
     }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if(!col.CompareTag("Player"))
+        {
+            Destroy();
+        }
+    }
+
+    public void Destroy()
+    {
+        gameObject.SetActive(false);
+        BulletObjectPool.Instance.Dispawn(this);
+    }
 }
