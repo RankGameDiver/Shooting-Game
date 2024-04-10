@@ -7,7 +7,7 @@
             "actions": [
                 {
                     "name": "Foward",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "bdc7b7ba-4383-4bbb-b2fb-216f1722f0d2",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -16,7 +16,7 @@
                 },
                 {
                     "name": "Back",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "4a52be07-8444-4e9e-b550-774252c10820",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -25,7 +25,7 @@
                 },
                 {
                     "name": "Left",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "ac2b49b9-b63b-4b8e-a259-a881c22ccb45",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -34,7 +34,7 @@
                 },
                 {
                     "name": "Right",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "04dcd65a-f86f-4159-a88b-bbcbccf22029",
                     "expectedControlType": "Button",
                     "processors": "",
