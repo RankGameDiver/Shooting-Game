@@ -1,48 +1,65 @@
+using System;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 
 public class PlayerFacade : MonoBehaviour
 {
-    private PlayerAnimation _playerAnimation;
-    private PlayerInput _playerInput;
-    private PlayerMovement _playerMovement;
+    [Serializable]
+    private class Settings
+    {
+        public float MoveAnimTime = 0.03f;
+        public float MoveSpeed = 0.02f;
+        public float ShootingCoolTime = 0.2f;
+    }
+
+    private PlayerAnimation _animation;
+    private PlayerInput _input;
+    private PlayerMovement _movement;
+    private PlayerWeaponSystem _weaponSystem;
+
+    [SerializeField] private Bullet.Settings _bulletSettings;
+    [SerializeField] private Settings _settings;
 
     void Awake() 
     {
         SpriteResolver spriteResolver = GetComponentInChildren<SpriteResolver>();
-        _playerAnimation = new PlayerAnimation(spriteResolver);
-        _playerAnimation.SetUpdateTime(0.03f);
+        _animation = new PlayerAnimation(spriteResolver);
+        _animation.SetUpdateTime(_settings.MoveAnimTime);
 
-        _playerInput = GetComponentInChildren<PlayerInput>();
-        _playerInput.Init(this);
+        _input = GetComponentInChildren<PlayerInput>();
+        _input.Init(this);
 
-        _playerMovement = new PlayerMovement(0.02f, gameObject);
+        _movement = new PlayerMovement(_settings.MoveSpeed, gameObject);
+        _weaponSystem = new PlayerWeaponSystem(_bulletSettings, gameObject.transform.position, _settings.ShootingCoolTime);
     }
 
     void Update() 
     {
-        _playerMovement.OnUpdate();
-        _playerAnimation.SetDirectionX(_playerMovement.GetDirection().x);
-        _playerAnimation.OnUpdate();
+        _movement.OnUpdate();
+        _animation.SetDirectionX(_movement.GetDirection().x);
+        _animation.OnUpdate();
+
+        _weaponSystem.SetPosition(gameObject.transform.position);
+        _weaponSystem.CreateBullet();
     }
 
     public void OnFoward(bool isPressed)
     {
-        _playerMovement.SetDirectionX(isPressed);
+        _movement.SetDirectionX(isPressed);
     }
 
     public void OnBack(bool isPressed)
     {
-        _playerMovement.SetDirectionX(!isPressed);
+        _movement.SetDirectionX(!isPressed);
     }
 
     public void OnLeft(bool isPressed)
     {
-        _playerMovement.SetDirectionY(!isPressed);
+        _movement.SetDirectionY(!isPressed);
     }
 
     public void OnRight(bool isPressed)
     {
-        _playerMovement.SetDirectionY(isPressed);
+        _movement.SetDirectionY(isPressed);
     }
 }

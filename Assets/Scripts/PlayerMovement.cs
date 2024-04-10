@@ -29,7 +29,7 @@ public class PlayerMovement
 
     public void OnUpdate()
     {
-        Debug.Log($"x : {_direction.x}, y : {_direction.y}");
+        // Debug.Log($"x : {_direction.x}, y : {_direction.y}");
         _moveObject.transform.position += _moveSpeed * _direction;
     }
 }
