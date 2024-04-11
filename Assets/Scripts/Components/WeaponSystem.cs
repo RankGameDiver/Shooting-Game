@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class PlayerWeaponSystem
+public class WeaponSystem
 {
     private Bullet.Settings _bulletSettings;
     private Vector3 _startPos;
     private float _curTime;
     private float _coolTime;
 
-    public PlayerWeaponSystem(Bullet.Settings bulletSettings, Vector3 startPos, float coolTime)
+    public WeaponSystem(Bullet.Settings bulletSettings, Vector3 startPos, float coolTime)
     {
         _bulletSettings = bulletSettings;
         _startPos = startPos;

@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class PlayerMovement
+public class Movement
 {
     private Vector3 _direction = Vector2.zero;
     private float _moveSpeed;
     private GameObject _moveObject;
 
-    public PlayerMovement(float moveSpeed, GameObject moveObject)
+    public Movement(float moveSpeed, GameObject moveObject)
     {
         _moveSpeed = moveSpeed;
         _moveObject = moveObject;

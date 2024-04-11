@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 
-public class PlayerFacade : MonoBehaviour
+public class EnemyFacade : MonoBehaviour
 {
     [Serializable]
     private class Settings
@@ -12,8 +12,6 @@ public class PlayerFacade : MonoBehaviour
         public float ShootingCoolTime = 0.2f;
     }
 
-    private PlayerAnimation _animation;
-    private PlayerInput _input;
     private Movement _movement;
     private WeaponSystem _weaponSystem;
 
@@ -23,10 +21,8 @@ public class PlayerFacade : MonoBehaviour
     void Awake() 
     {
         SpriteResolver spriteResolver = GetComponentInChildren<SpriteResolver>();
-        _animation = new PlayerAnimation(spriteResolver, _settings.MoveAnimTime);
-
-        _input = GetComponentInChildren<PlayerInput>();
-        _input.Init(this);
+        // _animation = new PlayerAnimation(spriteResolver);
+        // _animation.SetUpdateTime(_settings.MoveAnimTime);
 
         _movement = new Movement(_settings.MoveSpeed, gameObject);
         _weaponSystem = new WeaponSystem(_bulletSettings, gameObject.transform.position, _settings.ShootingCoolTime);
@@ -35,8 +31,8 @@ public class PlayerFacade : MonoBehaviour
     void Update() 
     {
         _movement.OnUpdate();
-        _animation.SetDirectionX(_movement.GetDirection().x);
-        _animation.OnUpdate();
+        // _animation.SetDirectionX(_movement.GetDirection().x);
+        // _animation.OnUpdate();
 
         _weaponSystem.SetPosition(gameObject.transform.position);
         _weaponSystem.CreateBullet();
