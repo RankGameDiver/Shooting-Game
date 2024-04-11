@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
         public string MyTag;
     }
 
-    public Settings _settings;
+    private Settings _settings;
 
     private SpriteRenderer _spriteRenderer;
 
@@ -35,6 +35,11 @@ public class Bullet : MonoBehaviour
         {
             Destroy();
         }
+    }
+
+    public string GetMyTag()
+    {
+        return _settings.MyTag;
     }
 
     public void Destroy()
