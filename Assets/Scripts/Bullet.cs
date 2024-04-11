@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
         public Sprite Sprite;
         public Vector3 Direction = Vector3.zero;
         public float MoveSpeed;
+        public string MyTag;
     }
 
     public Settings _settings;
@@ -30,7 +31,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(!col.CompareTag("Player"))
+        if(!col.CompareTag(_settings.MyTag))
         {
             Destroy();
         }

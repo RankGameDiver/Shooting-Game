@@ -22,6 +22,11 @@ public class SpriteLibraryForAnimation
 
     public void SetAnimation(string category, int maxNum)
     {
+        if(category == _curCategory)
+        {
+            return;
+        }
+
         _curCategory = category;
         _curNum = 0;
         _maxNum = maxNum;
