@@ -8,7 +8,7 @@ public class PlayerFacade : UnitFacade
     void Awake() 
     {
         SpriteResolver spriteResolver = GetComponentInChildren<SpriteResolver>();
-        _animation = new PlayerAnimation(spriteResolver, _settings.MoveAnimTime);
+        _animation = new PlayerAnimation(spriteResolver, _settings.TimeperFrame);
 
         _input = GetComponentInChildren<PlayerInput>();
         _input.Init(this);
@@ -48,5 +48,10 @@ public class PlayerFacade : UnitFacade
     public override void OnRight(bool isPressed)
     {
         _movement.SetDirectionY(isPressed);
+    }
+
+    public override void OnHit()
+    {
+        base.OnHit();
     }
 }

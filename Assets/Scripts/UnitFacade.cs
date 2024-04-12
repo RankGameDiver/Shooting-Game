@@ -6,7 +6,7 @@ public class UnitFacade : MonoBehaviour
     [Serializable]
     protected class Settings
     {
-        public float MoveAnimTime = 0.03f;
+        public float TimeperFrame = 0.03f;
         public float MoveSpeed = 0.02f;
         public float ShootingCoolTime = 0.2f;
         public int MaxLife = 3;
@@ -25,7 +25,7 @@ public class UnitFacade : MonoBehaviour
     public virtual void OnLeft(bool isPressed) { }
     public virtual void OnRight(bool isPressed) { }
 
-    public void OnHit()
+    public virtual void OnHit()
     {
         _status.GetLife().Decrease();
         if((int)_status.GetLife().Value <= 0)
@@ -34,9 +34,11 @@ public class UnitFacade : MonoBehaviour
         }
     }
 
-    public void OnRecovery()
+    public virtual void OnRecovery()
     {
         Debug.Log("OnRecovery");
         _status.GetLife().Increase();
     }
+
+    public virtual void OnDead() { }
 }

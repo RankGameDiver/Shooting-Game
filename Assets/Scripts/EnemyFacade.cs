@@ -7,7 +7,7 @@ public class EnemyFacade : UnitFacade
     void Awake() 
     {
         SpriteResolver spriteResolver = GetComponentInChildren<SpriteResolver>();
-        _animation = new EnemyAnimation(spriteResolver, _settings.MoveAnimTime);
+        _animation = new EnemyAnimation(spriteResolver, _settings.TimeperFrame);
 
         _weaponSystem = new WeaponSystem(_bulletSettings, gameObject.transform.position, _settings.ShootingCoolTime);
         _status = new Status(_settings.MaxLife);
@@ -21,5 +21,11 @@ public class EnemyFacade : UnitFacade
         _animation.OnUpdate();
         _weaponSystem.SetPosition(gameObject.transform.position);
         _weaponSystem.CreateBullet();
+    }
+
+    public override void OnHit()
+    {
+        base.OnHit();
+        _animation.SetAnimation("Enemy_Boss_Hit", 1, () => _animation.SetAnimation("Enemy_Boss", 3));
     }
 }

@@ -10,17 +10,17 @@ public class SpriteLibraryForAnimation
     private int _curNum = 0;
     private int _maxNum = 4;
     private float _curTime = 0;
-    private float _animTime = 0.02f;
+    private float _timePerFrame = 0.02f;
+    private bool _isSetAnim = false;
+    private Action _animCallback = null;
 
-    private Action _animAction = null;
-
-    public SpriteLibraryForAnimation(SpriteResolver spriteResolver, float time)
+    public SpriteLibraryForAnimation(SpriteResolver spriteResolver, float timePerFrame)
     {
         _spriteResolver = spriteResolver;
-        _animTime = time;
+        _timePerFrame = timePerFrame;
     }
 
-    public void SetAnimation(string category, int maxNum)
+    public void SetAnimation(string category, int maxNum, Action callback = null)
     {
         if(category == _curCategory)
         {
@@ -28,33 +28,40 @@ public class SpriteLibraryForAnimation
         }
 
         _curCategory = category;
+        _curTime = 0;
         _curNum = 0;
         _maxNum = maxNum;
+        _isSetAnim = true;
 
-        _animAction = () => OnAction();
+        _animCallback = callback;
+        OnAction();
     }
 
     public void OnUpdate() 
     {
-        if(_animAction == null)
+        if(!_isSetAnim)
         {
             return;
         }
 
-        _curTime += Time.deltaTime / _animTime;
+        _curTime += Time.deltaTime / _timePerFrame;
         if(_curTime >= _maxNum) 
         {
             _curTime = 0;
             if(_curNum >= _maxNum - 1) 
             {
                 _curNum = 0;
+                if(_animCallback != null)
+                {
+                    _animCallback.Invoke();
+                    _animCallback = null;
+                }
             }
             else 
             {
                 _curNum++;
             }
-
-            _animAction.Invoke();
+            OnAction();
         }
     }
 

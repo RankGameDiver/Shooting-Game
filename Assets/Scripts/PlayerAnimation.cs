@@ -2,7 +2,7 @@ using UnityEngine.U2D.Animation;
 
 public class PlayerAnimation : SpriteLibraryForAnimation
 {
-    public PlayerAnimation(SpriteResolver spriteResolver, float animTime) : base(spriteResolver, animTime)
+    public PlayerAnimation(SpriteResolver spriteResolver, float timeperFrame) : base(spriteResolver, timeperFrame)
     {
 
     }
