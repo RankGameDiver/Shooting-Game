@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
         _spriteRenderer.sprite = _settings.Sprite;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         gameObject.transform.position += _settings.MoveSpeed * _settings.Direction;
     }

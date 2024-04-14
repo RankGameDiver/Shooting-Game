@@ -16,7 +16,7 @@ public class EnemyFacade : UnitFacade
         _collisionListener.Init(this, gameObject.tag);
     }
 
-    void Update() 
+    void FixedUpdate()
     {
         _animation.OnUpdate();
         _weaponSystem.SetPosition(gameObject.transform.position);

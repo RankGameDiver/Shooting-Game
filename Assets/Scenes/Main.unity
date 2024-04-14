@@ -1486,11 +1486,11 @@ MonoBehaviour:
   _bulletSettings:
     Sprite: {fileID: 874343242196921964, guid: 5547e92425a5b584ba72bba3566474f0, type: 3}
     Direction: {x: 0, y: 1, z: 0}
-    MoveSpeed: 0.03
+    MoveSpeed: 0.1
     MyTag: Player
   _settings:
-    MoveAnimTime: 0.03
-    MoveSpeed: 0.02
+    TimeperFrame: 0.03
+    MoveSpeed: 0.1
     ShootingCoolTime: 0.2
     MaxLife: 3
 --- !u!50 &1662428099
@@ -1609,11 +1609,11 @@ MonoBehaviour:
   _bulletSettings:
     Sprite: {fileID: 6112890488319390909, guid: 5547e92425a5b584ba72bba3566474f0, type: 3}
     Direction: {x: 0, y: -1, z: 0}
-    MoveSpeed: 0.01
+    MoveSpeed: 0.05
     MyTag: Enemy
   _settings:
-    MoveAnimTime: 0.03
-    MoveSpeed: 0.02
+    TimeperFrame: 0.03
+    MoveSpeed: 0.4
     ShootingCoolTime: 0.5
     MaxLife: 10
 --- !u!114 &1717728616
