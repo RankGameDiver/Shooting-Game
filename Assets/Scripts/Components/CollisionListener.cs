@@ -14,7 +14,7 @@ public class CollisionListener : MonoBehaviour
 
             if(_myTag != bulletTag)
             {
-                Debug.Log($"_myTag : {_myTag}");
+                // Debug.Log($"_myTag : {_myTag}");
                 _unitFacade.OnHit();
             }
         }

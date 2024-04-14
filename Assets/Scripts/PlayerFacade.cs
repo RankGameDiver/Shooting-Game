@@ -19,6 +19,8 @@ public class PlayerFacade : UnitFacade
 
         _collisionListener = GetComponent<CollisionListener>();
         _collisionListener.Init(this, gameObject.tag);
+
+        GameManager.Instance.GetPlayerHeartController().Init(_settings.MaxLife);
     }
 
     void FixedUpdate() 
@@ -53,5 +55,6 @@ public class PlayerFacade : UnitFacade
     public override void OnHit()
     {
         base.OnHit();
+        GameManager.Instance.GetPlayerHeartController().Decrease();
     }
 }
