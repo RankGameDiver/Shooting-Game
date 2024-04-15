@@ -23,11 +23,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         _playerHeartController = FindObjectOfType<PlayerHeartController>();
         _player = Instantiate(_settings.ObjPlayer, _settings.PlayerStartPos, Quaternion.identity, transform).GetComponent<PlayerFacade>();
+        _player.SetHeartController(_playerHeartController);
         _enemy =  Instantiate(_settings.ObjEnemy, _settings.EnemyStartPos, Quaternion.identity, transform).GetComponent<EnemyFacade>();
     }
-
-    public PlayerHeartController GetPlayerHeartController()
-    {
-        return _playerHeartController;
-    } 
 }

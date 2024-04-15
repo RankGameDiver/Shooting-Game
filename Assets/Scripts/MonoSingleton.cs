@@ -11,11 +11,14 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
             if (_instance == null)
             {
                 T i = FindObjectOfType<T>();
-
                 if (i == null)
-                    Debug.LogError("scene안에 해당하는 컴포넌트가 없습니다. name L " + typeof(T).Name);
+                {
+                    _instance = new GameObject(typeof(T).Name).AddComponent<T>();
+                }
                 else 
+                {
                     _instance = i;
+                }
             }
             return _instance;
         }

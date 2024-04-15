@@ -4,6 +4,7 @@ public class PlayerFacade : UnitFacade
 {
     private PlayerAnimation _animation;
     private PlayerInput _input;
+    private PlayerHeartController _heartController;
 
     void Awake() 
     {
@@ -11,16 +12,14 @@ public class PlayerFacade : UnitFacade
         _animation = new PlayerAnimation(spriteResolver, _settings.TimeperFrame);
 
         _input = GetComponentInChildren<PlayerInput>();
-        _input.Init(this);
+        _input?.Init(this);
 
         _movement = new Movement(_settings.MoveSpeed, gameObject);
         _weaponSystem = new WeaponSystem(_bulletSettings, gameObject.transform.position, _settings.ShootingCoolTime);
         _status = new Status(_settings.MaxLife);
 
         _collisionListener = GetComponent<CollisionListener>();
-        _collisionListener.Init(this, gameObject.tag);
-
-        GameManager.Instance.GetPlayerHeartController().Init(_settings.MaxLife);
+        _collisionListener?.Init(this, gameObject.tag);
     }
 
     void FixedUpdate() 
@@ -30,6 +29,12 @@ public class PlayerFacade : UnitFacade
         _animation.OnUpdate();
         _weaponSystem.SetPosition(gameObject.transform.position);
         _weaponSystem.CreateBullet();
+    }
+
+    public void SetHeartController(PlayerHeartController heartController)
+    {
+        _heartController = heartController;
+        _heartController.Init(_settings.MaxLife);
     }
 
     public override void OnFoward(bool isPressed)
@@ -55,6 +60,6 @@ public class PlayerFacade : UnitFacade
     public override void OnHit()
     {
         base.OnHit();
-        GameManager.Instance.GetPlayerHeartController().Decrease();
+        _heartController.Decrease();
     }
 }

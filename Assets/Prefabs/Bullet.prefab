@@ -143,7 +143,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7d160cdb67eee459263832a8c0780f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings:
-    Sprite: {fileID: 0}
-    Direction: {x: 0, y: 0, z: 0}
-    MoveSpeed: 0

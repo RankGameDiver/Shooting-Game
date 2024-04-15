@@ -1,30 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletObjectPool : MonoBehaviour
+public class BulletObjectPool : MonoSingleton<BulletObjectPool>
 {
-    private static BulletObjectPool _instance;
-
-    public static BulletObjectPool Instance
-    {
-        get
-        {
-            if(_instance == null)
-            {
-                _instance = FindObjectOfType<BulletObjectPool>();
-
-                if (_instance == null)
-                {
-                    GameObject obj = new("BulletObjectPool");
-                    _instance = obj.AddComponent<BulletObjectPool>();
-                }
-            }
-
-            return _instance;
-        }
-    }
-
-    [SerializeField] private GameObject _bulletObj;
     private List<Bullet> _enableBullets = new List<Bullet>();
     private Queue<Bullet> _disableBullets = new Queue<Bullet>();
 
@@ -39,9 +17,12 @@ public class BulletObjectPool : MonoBehaviour
         }
         else
         {
-            var bulletObj = Instantiate(_bulletObj, startPos, Quaternion.identity, gameObject.transform);
-            bulletObj.name = "bullet";
-            bullet = bulletObj.GetComponent<Bullet>();
+            GameObject bulletObj = new GameObject("bullet");
+            bulletObj.transform.SetPositionAndRotation(startPos, Quaternion.identity);
+            bulletObj.transform.parent = gameObject.transform;
+            bulletObj.AddComponent<SpriteRenderer>();
+            bulletObj.AddComponent<BoxCollider2D>();
+            bullet = bulletObj.AddComponent<Bullet>();
         }
 
         bullet.Init(bulletSettings);
