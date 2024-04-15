@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.U2D.Animation;
 
 public class EnemyFacade : UnitFacade
@@ -27,5 +28,10 @@ public class EnemyFacade : UnitFacade
     {
         base.OnHit();
         _animation.SetAnimation("Enemy_Boss_Hit", 1, () => _animation.SetAnimation("Enemy_Boss", 3));
+        
+        if((int)_status.GetLife().Value <= 0)
+        {
+            Debug.Log($"{gameObject.tag}'s life is zero!!");
+        }
     }
 }

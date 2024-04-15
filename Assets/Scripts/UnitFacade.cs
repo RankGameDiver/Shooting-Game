@@ -28,10 +28,6 @@ public class UnitFacade : MonoBehaviour
     public virtual void OnHit()
     {
         _status.GetLife().Decrease();
-        if((int)_status.GetLife().Value <= 0)
-        {
-            Debug.Log($"{gameObject.tag}'s life is zero!!");
-        }
     }
 
     public virtual void OnRecovery()

@@ -26,4 +26,9 @@ public class GameManager : MonoSingleton<GameManager>
         _player.SetHeartController(_playerHeartController);
         _enemy =  Instantiate(_settings.ObjEnemy, _settings.EnemyStartPos, Quaternion.identity, transform).GetComponent<EnemyFacade>();
     }
+
+    public void PlayerDied()
+    {
+        UIManager.Instance.PlayerDied(true);
+    }
 }

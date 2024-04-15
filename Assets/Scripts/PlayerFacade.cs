@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.U2D.Animation;
 
 public class PlayerFacade : UnitFacade
@@ -61,5 +62,12 @@ public class PlayerFacade : UnitFacade
     {
         base.OnHit();
         _heartController.Decrease();
+
+        Debug.Log($"Player OnHit. {(int)_status.GetLife().Value}");
+        if((int)_status.GetLife().Value <= 0)
+        {
+            Debug.Log($"{gameObject.tag}'s life is zero!!");
+            GameManager.Instance.PlayerDied();
+        }
     }
 }
