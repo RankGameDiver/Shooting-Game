@@ -12,7 +12,6 @@ public class UnitFacade : MonoBehaviour
         public int MaxLife = 3;
     }
 
-    protected Movement _movement;
     protected WeaponSystem _weaponSystem;
     protected Status _status;
     protected CollisionListener _collisionListener;

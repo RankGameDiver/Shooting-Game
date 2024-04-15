@@ -82,7 +82,7 @@ MonoBehaviour:
     MyTag: Enemy
   _settings:
     TimeperFrame: 0.03
-    MoveSpeed: 0.4
+    MoveSpeed: 0.05
     ShootingCoolTime: 0.5
     MaxLife: 100
 --- !u!114 &3238921028296146397

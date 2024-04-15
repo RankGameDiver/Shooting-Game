@@ -6,6 +6,7 @@ public class PlayerFacade : UnitFacade
     private PlayerAnimation _animation;
     private PlayerInput _input;
     private PlayerHeartController _heartController;
+    private Movement _movement;
 
     void Awake() 
     {
@@ -30,6 +31,8 @@ public class PlayerFacade : UnitFacade
         _animation.OnUpdate();
         _weaponSystem.SetPosition(gameObject.transform.position);
         _weaponSystem.CreateBullet();
+
+        // Debug.Log($"x : {_movement.GetDirection().x}, y : {_movement.GetDirection().y}");
     }
 
     public void SetHeartController(PlayerHeartController heartController)
@@ -40,22 +43,22 @@ public class PlayerFacade : UnitFacade
 
     public override void OnFoward(bool isPressed)
     {
-        _movement.SetDirectionX(isPressed);
+        _movement.SetDirectionY(isPressed);
     }
 
     public override void OnBack(bool isPressed)
     {
-        _movement.SetDirectionX(!isPressed);
+        _movement.SetDirectionY(!isPressed);
     }
 
     public override void OnLeft(bool isPressed)
     {
-        _movement.SetDirectionY(!isPressed);
+        _movement.SetDirectionX(!isPressed);
     }
 
     public override void OnRight(bool isPressed)
     {
-        _movement.SetDirectionY(isPressed);
+        _movement.SetDirectionX(isPressed);
     }
 
     public override void OnHit()
@@ -63,7 +66,7 @@ public class PlayerFacade : UnitFacade
         base.OnHit();
         _heartController.Decrease();
 
-        Debug.Log($"Player OnHit. {(int)_status.GetLife().Value}");
+        // Debug.Log($"Player OnHit. {(int)_status.GetLife().Value}");
         if((int)_status.GetLife().Value <= 0)
         {
             Debug.Log($"{gameObject.tag}'s life is zero!!");
