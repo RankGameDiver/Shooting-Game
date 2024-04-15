@@ -10,7 +10,8 @@ public class EnemyMovement : Movement
 
     }
 
-    public void SetDirectionX(GameObject objTarget)
+    // 이동 방향 설정
+    public void SetDirectionToTarget(GameObject objTarget)
     {
         float directionX = objTarget.transform.position.x - _moveObject.transform.position.x;
         // Debug.Log($"SetDirectionX. directionX : {directionX}");

@@ -22,21 +22,23 @@ public class EnemyFacade : UnitFacade
 
     void FixedUpdate()
     {
-        SetDirectionX();
+        SetDirectionToTarget();
         _movement.OnUpdate();
         _animation.OnUpdate();
         _weaponSystem.SetPosition(gameObject.transform.position);
         _weaponSystem.CreateBullet();
     }
 
+    // 공격 목표 설정
     public void SetTarget(GameObject target)
     {
         _objTarget = target;
     }
 
-    public void SetDirectionX()
+    // 공격 목표를 향해 방향 설정
+    public void SetDirectionToTarget()
     {
-        _movement.SetDirectionX(_objTarget);
+        _movement.SetDirectionToTarget(_objTarget);
     }
 
     public override void OnHit()

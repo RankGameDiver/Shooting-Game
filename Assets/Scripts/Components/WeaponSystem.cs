@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// <summary>
+/// 유닛 무기 관리 코드
+/// </summary>
 public class WeaponSystem
 {
     private Bullet.Settings _bulletSettings;
@@ -14,11 +16,13 @@ public class WeaponSystem
         _coolTime = coolTime;
     }
 
+    // 무기 발사 위치 설정
     public void SetPosition(Vector3 startPos)
     {
         _startPos = startPos;
     }
 
+    // 총알 생성
     public void CreateBullet()
     {
         _curTime += Time.deltaTime;

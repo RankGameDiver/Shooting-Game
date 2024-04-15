@@ -12,11 +12,13 @@ public class Movement
         _moveObject = moveObject;
     }
 
+    // 좌 우 방향 설정
     public void SetDirectionX(bool isRight)
     {
         _direction.x = isRight ? _direction.x + 1 : _direction.x - 1;
     }
     
+    // 위 아래 방향 설정
     public void SetDirectionY(bool isForward)
     {
         _direction.y = isForward ? _direction.y + 1 : _direction.y - 1;
@@ -27,6 +29,7 @@ public class Movement
         return _direction;
     }
 
+    // 매 프레임마다 호출되어야 하는 함수
     public void OnUpdate()
     {
         _moveObject.transform.position += _moveSpeed * _direction;
