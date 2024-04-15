@@ -7,4 +7,9 @@ public class MoveGameScene : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
+    public void OnExit()
+    {
+        Application.Quit();
+    }
 }
