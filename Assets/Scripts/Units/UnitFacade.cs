@@ -15,6 +15,7 @@ public class UnitFacade : MonoBehaviour
     protected WeaponSystem _weaponSystem;
     protected Status _status;
     protected CollisionListener _collisionListener;
+    protected bool _isActive = false;
 
     [SerializeField] protected Bullet.Settings _bulletSettings;
     [SerializeField] protected Settings _settings;
@@ -36,4 +37,9 @@ public class UnitFacade : MonoBehaviour
     }
 
     public virtual void OnDead() { }
+
+    public virtual void SetActive(bool active)
+    {
+        _isActive = active;
+    }
 }

@@ -18,10 +18,17 @@ public class EnemyFacade : UnitFacade
 
         _collisionListener = GetComponent<CollisionListener>();
         _collisionListener.Init(this, gameObject.tag);
+
+        _isActive = true;
     }
 
     void FixedUpdate()
     {
+        if(!_isActive)
+        {
+            return;
+        }
+
         SetDirectionToTarget();
         _movement.OnUpdate();
         _animation.OnUpdate();

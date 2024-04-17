@@ -31,5 +31,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void PlayerDied()
     {
         UIManager.Instance.PlayerDied(true);
+        _enemy.SetActive(false);
+        _player.SetActive(false);
     }
 }

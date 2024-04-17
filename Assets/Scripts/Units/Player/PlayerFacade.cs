@@ -22,10 +22,17 @@ public class PlayerFacade : UnitFacade
 
         _collisionListener = GetComponent<CollisionListener>();
         _collisionListener?.Init(this, gameObject.tag);
+
+        _isActive = true;
     }
 
     void FixedUpdate() 
     {
+        if(!_isActive)
+        {
+            return;
+        }
+
         _movement.OnUpdate();
         _animation.SetDirectionX(_movement.GetDirection().x);
         _animation.OnUpdate();
