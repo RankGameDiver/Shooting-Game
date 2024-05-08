@@ -31,4 +31,9 @@ public class PlayerInput : MonoBehaviour
     {
         _playerFacade.OnRight(value.isPressed);
     }
+
+    public void OnBooster(InputValue value)
+    {
+        _playerFacade.OnBooster(value.isPressed);
+    }
 }

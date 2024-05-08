@@ -6,7 +6,10 @@ public class PlayerFacade : UnitFacade
     private PlayerAnimation _animation;
     private PlayerInput _input;
     private PlayerHeartController _heartController;
+
     private Movement _movement;
+    private PlayerBooster _booster;
+    [SerializeField] private PlayerBooster.Settings _boosterSettings;
 
     void Awake() 
     {
@@ -16,6 +19,7 @@ public class PlayerFacade : UnitFacade
         _input = GetComponentInChildren<PlayerInput>();
         _input?.Init(this);
 
+        _booster = new PlayerBooster(_boosterSettings);
         _movement = new Movement(_settings.MoveSpeed, gameObject);
         _weaponSystem = new WeaponSystem(_bulletSettings, gameObject.transform.position, _settings.ShootingCoolTime);
         _status = new Status(_settings.MaxLife);
@@ -33,7 +37,8 @@ public class PlayerFacade : UnitFacade
             return;
         }
 
-        _movement.OnUpdate();
+        _booster.OnUpdate();
+        _movement.OnUpdate(_booster.GetSpeedRate());
         _animation.SetDirectionX(_movement.GetDirection().x);
         _animation.OnUpdate();
         _weaponSystem.SetPosition(gameObject.transform.position);
@@ -79,5 +84,10 @@ public class PlayerFacade : UnitFacade
             Debug.Log($"{gameObject.tag}'s life is zero!!");
             GameManager.Instance.PlayerDied();
         }
+    }
+
+    public void OnBooster(bool enable)
+    {
+        _booster.Enable(enable);
     }
 }

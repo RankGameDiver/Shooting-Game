@@ -86,6 +86,10 @@ MonoBehaviour:
     MoveSpeed: 0.1
     ShootingCoolTime: 0.2
     MaxLife: 3
+  _boosterSettings:
+    SpeedRate: 1.5
+    MaxTime: 3
+    RecoveryTime: 6
 --- !u!114 &9152736354119762151
 MonoBehaviour:
   m_ObjectHideFlags: 0
