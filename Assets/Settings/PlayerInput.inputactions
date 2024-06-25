@@ -6,7 +6,7 @@
             "id": "33bcf556-cf9b-4dc1-8932-0f9f75667d29",
             "actions": [
                 {
-                    "name": "Foward",
+                    "name": "Forward",
                     "type": "PassThrough",
                     "id": "bdc7b7ba-4383-4bbb-b2fb-216f1722f0d2",
                     "expectedControlType": "Button",
@@ -59,7 +59,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Foward",
+                    "action": "Forward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -70,7 +70,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Foward",
+                    "action": "Forward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

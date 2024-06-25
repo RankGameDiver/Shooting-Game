@@ -12,7 +12,7 @@ public class PlayerInput : MonoBehaviour
         _playerFacade = playerFacade;
     }
 
-    public void OnFoward(InputValue value)
+    public void OnForward(InputValue value)
     {
         _playerFacade.OnFoward(value.isPressed);
     }
